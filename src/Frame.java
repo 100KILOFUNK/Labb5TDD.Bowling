@@ -6,6 +6,15 @@ public class Frame {
 	private int first;
 	private int second;
 	
+	public Frame(){
+		this.first = 0;
+		this.second = 0;
+	}
+	
+	public Frame(int first, int second){
+		this.first = first;
+		this.second = second;
+	}
 	
 	public int getFirst() {
 		return first;
