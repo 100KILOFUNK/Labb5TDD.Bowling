@@ -5,6 +5,7 @@ public class Frame {
 
 	private int first;
 	private int second;
+
 	
 	public Frame(){
 		this.first = 0;
@@ -27,6 +28,14 @@ public class Frame {
 	}
 	public void setSecond(int second) {
 		this.second = second;
+	}
+	
+	public int returnSum(){
+		return first + second;
+	}
+	
+	public String toString(){
+		return "[" + this.first + ", " + this.second + "]"; 
 	}
 	
 	
