@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GUI {
 
 	
-	private static Logic game;
+	private static Game game;
 	private static Scanner in = new Scanner(System.in);
 	
 	public static void main(String[] args) {
@@ -31,7 +31,7 @@ public class GUI {
 	    players = in.nextInt();
 	    
 	    //create the object with the right amount of players
-	    game = new Logic(players);
+	    game = new Game(players);
 	}
 	
 	
@@ -44,7 +44,10 @@ public class GUI {
 			for(int i = 0; i < game.getNrOfPlayers(); i++){
 				//System.out.println(game.returnAtIndex(i).getName());
 				
-				turn(i);
+				if(game.getNrOfGamesPlayed() < 9)
+					turn(i);
+				else
+					lastTurn(i);
 				draw();
 			}
 			
@@ -79,14 +82,60 @@ public class GUI {
 			System.out.println("Press any key to throw!");
 			in.next();
 			points[i] = game.turn();
+			
+			//if the first one is strike
+			if(i > 1 && points[i] == 10) {
+				points[i+1] = -1; //-1 represents the nonexistent
+				break;
+			}
+			
 			System.out.println("Knocked down: " + points[i]);
 		}
 		
-		//add the turns to the 
-		game.addFrame(points[0], points[1], playerIndex);
+		//add the turns to the
+			game.addFrame(points[0], points[1], playerIndex);
+		
 		//reset the pins to ten
 		game.setMaxpts(10);
 		
 	}
+	
+	
+	public static void lastTurn(int pIndex){
+		
+		int pts[] = new int[3];
+		pts[0] = 0;
+		pts[1] = 0;
+		pts[2] = 0;
+		
+		Boolean cont = true;
+		int count = 0;
+		
+		do{
+			System.out.println("Press any key to throw! #" + (count + 1));
+			in.next();
+			pts[count] = game.turn();
+			System.out.println("Knocked down: " + pts[count]);
+
+			if(pts[count] == 10) game.setMaxpts(10);
+			
+			count++;
+			
+			if(count == 2 && pts[0] + pts[1] < 10)
+				cont = false;
+			
+			if(count == 2 && pts[0] + pts[1] == 10) 
+				game.setMaxpts(10);
+			
+			if(count == 3) 
+				cont = false;
+			
+		}while(cont);
+		
+		game.returnAtIndex(pIndex).addLastFrame(pts[0], pts[1], pts[2]);
+		
+	}
 
 }
+
+	

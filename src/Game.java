@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Logic {
+public class Game {
 
 	//CONSTANTS
 	public  int maxpts;
@@ -13,14 +13,14 @@ public class Logic {
 	private int nrOfGamesPlayed;
 	
 	//Constructors
-	public Logic(){
+	public Game(){
 		this.players = new Player[0];  //Default
 		this.nrOfPlayers = 0;
 		this.nrOfGamesPlayed = 0;
 		this.maxpts = 10;
 	}
 	
-	public Logic(int nrOfPlayers){
+	public Game(int nrOfPlayers){
 		this.players = new Player[nrOfPlayers];	//User defined number of players, use this one
 		
 		for(int i = 0; i < nrOfPlayers; i++)
@@ -70,6 +70,11 @@ public class Logic {
 	
 	public void addFrame(int first, int second, int playerIndex){
 		this.players[playerIndex].addFrame(first, second);
+		
+	}
+	
+	public void addLastFrame(int x, int f, int s, int i){
+		this.players[i].addLastFrame(x, f, s);
 	}
 	
 	
