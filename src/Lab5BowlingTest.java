@@ -24,8 +24,8 @@ public class Lab5BowlingTest {
 		//gametest - req 3
 		//reqThree();
 		
-		//gamesum - req 4 //this wont work now as this does not take strikes or spares in consideration
-		//reqFour();
+		//gamesum - req 4
+		reqFour();
 		
 		//stikesum - req 5
 		//reqFive();
@@ -54,7 +54,10 @@ public class Lab5BowlingTest {
 		//reqTwelve();
 		
 		//perfect game - req 13
-		reqThirteen();
+		//reqThirteen();
+		
+		//game - req 14
+		//reqFourteen();
 	}
 	
 	public void reqone(){ //frametest
@@ -117,12 +120,15 @@ public class Lab5BowlingTest {
 		int sum = 0;
 		
 		for(int i = 0; i < 10; i++){
-			f = g.turn();	//first throw
-			s = g.turn();	//second throes 
+			f = 1;	//first throw
+			s = 2;	//second throes 
 			sum += f+s;		//add the throws
 			g.addFrame(f, s, 0); //create the frame	
 			g.setMaxpts(10);	//reset the maxpoints
 		}
+		
+		
+		
 		
 		//assertEquals(sum, g.returnAtIndex(0).getSum()); //check if the sum is equal to the independent sum
 		assertEquals(sum, g.returnAtIndex(0).getSum()); // i prefer this, since it is more clear what is happening
@@ -268,6 +274,27 @@ public class Lab5BowlingTest {
 		
 
 		assertEquals(sum, g.returnAtIndex(0).getSum());
+		
+	}
+	
+	public void reqFourteen(){
+		
+		Game g = new Game(1);
+		
+		g.addFrame(6, 3, 0);
+		g.addFrame(7, 1, 0);
+		g.addFrame(8, 2, 0);
+		g.addFrame(7, 2, 0);
+		g.addFrame(10, 0, 0);
+		g.addFrame(6, 2, 0);
+		g.addFrame(7, 3, 0);
+		g.addFrame(10, 0, 0);
+		g.addFrame(8, 0, 0);
+		
+		g.addLastFrame(10, 7, 3, 0);
+		
+		
+		assertEquals(135, g.returnAtIndex(0).getSum());
 		
 	}
 
