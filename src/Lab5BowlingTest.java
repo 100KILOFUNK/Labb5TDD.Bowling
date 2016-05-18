@@ -14,6 +14,11 @@ public class Lab5BowlingTest {
 
 	@Test
 	public void test() {
+		
+		//Uncomment the test you want to run
+		
+		
+		
 		//frametest - req 1
 		//reqone();
 		
@@ -25,7 +30,7 @@ public class Lab5BowlingTest {
 		//reqThree();
 		
 		//gamesum - req 4
-		reqFour();
+		//reqFour();
 		
 		//stikesum - req 5
 		//reqFive();
@@ -124,7 +129,6 @@ public class Lab5BowlingTest {
 			s = 2;	//second throes 
 			sum += f+s;		//add the throws
 			g.addFrame(f, s, 0); //create the frame	
-			g.setMaxpts(10);	//reset the maxpoints
 		}
 		
 		
